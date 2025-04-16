@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="generator" content="Hostinger Horizons" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostinger Horizons - Courses</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Custom styles (optional for further customization) */
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+
+    <!-- Courses Page Template -->
+    <div class="min-h-screen bg-gray-50 py-10 px-6">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">Available Courses</h1>
+        
+        <div id="course-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Dynamic Course Cards will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Define courses data
+      const courses = [
+        {
+          id: 1,
+          title: 'Frontend Development',
+          description: 'Learn HTML, CSS, JavaScript, and modern frameworks like React.',
+          level: 'Beginner',
+          duration: '3 months'
+        },
+        {
+          id: 2,
+          title: 'Backend Development',
+          description: 'Master Node.js, Express, Databases, and APIs.',
+          level: 'Intermediate',
+          duration: '4 months'
+        },
+        {
+          id: 3,
+          title: 'Full-Stack Web Development',
+          description: 'Complete path to become a full-stack developer.',
+          level: 'Advanced',
+          duration: '6 months'
+        }
+      ];
+
+      // Function to render courses dynamically
+      function renderCourses() {
+        const courseList = document.getElementById('course-list');
+
+        courses.forEach(course => {
+          const courseCard = document.createElement('div');
+          courseCard.classList.add('bg-white', 'rounded-2xl', 'shadow-md', 'p-6', 'hover:shadow-xl', 'transition', 'duration-300');
+
+          courseCard.innerHTML = `
+            <h2 class="text-xl font-semibold mb-2">${course.title}</h2>
+            <p class="text-gray-700 mb-4">${course.description}</p>
+            <div class="text-sm text-gray-500 flex justify-between">
+              <span>Level: ${course.level}</span>
+              <span>Duration: ${course.duration}</span>
+            </div>
+          `;
+
+          courseList.appendChild(courseCard);
+        });
+      }
+
+      // Call function to render courses when the page loads
+      document.addEventListener('DOMContentLoaded', renderCourses);
+    </script>
+
+  </body>
+</html>

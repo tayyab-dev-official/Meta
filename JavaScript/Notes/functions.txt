@@ -1,0 +1,207 @@
+JavaScript Functions
+(Foundation for modular, reusable code – har developer ko yeh concept solid aana chahiye!)
+
+🧠 Hinglish Explanation (Detailed)
+JavaScript mein function ek reusable block of code hota hai jo specific task perform karta hai.
+Aap function ko baar-baar use kar sakte ho without rewriting the same code.
+Yeh web development mein bahut important hota hai — chaahe aap button click pe alert show karo, ya form ka data validate karo — sab mein function ka use hota hai.
+
+🔹 Why use Functions?
+✅ Code reusability
+✅ Logic separation
+✅ Better readability & maintenance
+✅ Avoid repetition (DRY Principle – Don’t Repeat Yourself)
+
+🔹 Function Declaration
+Definition:
+Function declaration ya "named function" ek traditional tareeka hai function banane ka.
+Yeh hoisted hota hai — iska matlab aap isse define karne se pehle bhi call kar sakte ho.
+
+Example – Displaying a welcome message on an e-commerce site homepage:
+
+function showWelcomeBanner() {
+  console.log("👋 Welcome to ShopSmart! Enjoy your shopping.");
+}
+
+🔹 Call / Invoke Function
+Definition:
+Function ko use karne ke liye usse "call" ya "invoke" karna padta hai.
+Iske liye function ke naam ke baad parentheses lagte hain: functionName();
+
+Example – Calling the function:
+showWelcomeBanner(); // Output: 👋 Welcome to ShopSmart! Enjoy your shopping.
+
+🔹 Function with Parameters
+Definition:
+Parameters wo values hoti hain jo function ke andar input ke roop mein bheji jaati hain.
+
+Example – Greet the user after login:
+
+
+function greetUser(name) {
+  console.log("Hello, " + name + "! We're glad you're back.");
+}
+
+greetUser("Aman"); // Output: Hello, Aman! We're glad you're back.
+
+🔹 Function with Return
+Definition:
+return keyword function ka output dene ke liye hota hai.
+Jab aap kisi calculation ka result use karna chahte ho, tab return ka use hota hai.
+
+Example – Calculating total price with tax:
+
+
+function calculateTotal(price, taxRate) {
+  return price + (price * taxRate);
+}
+
+let total = calculateTotal(1000, 0.18);
+console.log(total); // Output: 1180
+
+🔹 Default Parameters
+Definition:
+Agar function call karte waqt koi parameter nahi diya gaya, to default value use ki jaati hai.
+
+Example – Guest checkout greeting:
+
+function greet(name = "Guest") {
+  console.log("Hello " + name + ", proceed to checkout.");
+}
+
+greet(); // Hello Guest, proceed to checkout.
+
+🔹 Function Expression
+Definition:
+Function expression mein function ko ek variable mein store kiya jaata hai.
+Ye function anonymous bhi ho sakta hai, aur hoisted nahi hota.
+
+Example – Discount calculator:
+
+
+const getDiscountedPrice = function (originalPrice, discount) {
+  return originalPrice - (originalPrice * discount);
+};
+
+console.log(getDiscountedPrice(500, 0.2)); // 400
+
+🔹 Arrow Function (ES6+)
+Definition:
+Arrow function modern syntax hai (ES6 se aayi).
+Yeh concise hoti hai, aur this parent context se inherit karta hai.
+
+Example – Calculate delivery charge:
+
+
+const calculateDelivery = (distanceKm) => {
+  return distanceKm * 5; // ₹5 per km
+};
+
+console.log(calculateDelivery(10)); // 50
+Shorter version (if 1 line only):
+
+
+const square = x => x * x;
+console.log(square(5)); // 25
+📝 Interview Notes
+Function Declaration hoisting hota hai – define karne se pehle bhi call kar sakte ho.
+
+Function Expression / Arrow Function hoist nahi hoti.
+
+Arrow Function this ka apna context nahi leti — they inherit from parent scope.
+
+✅ Interview Questions
+Q1: function aur arrow function mein kya farq hai?
+Answer:
+
+Function ka apna this hota hai.
+
+Arrow function parent ka this use karta hai.
+
+Function hoist hota hai, arrow function nahi.
+
+Q2: Function ko bina return keyword ke kaise result milta hai?
+Answer: Agar return nahi likhoge, function default undefined return karega.
+
+Q3: Function declaration vs expression mein difference?
+
+
+Feature	Declaration	Expression
+Hoisted	✅ Yes	❌ No
+Named Function	✅ Always	Optional (anonymous)
+Syntax	function fn()	const fn = function()
+🧪 Exercises
+1️⃣ Write a function to validate if an email contains @ symbol:
+
+
+function isValidEmail(email) {
+  return email.includes("@");
+}
+console.log(isValidEmail("hello@example.com")); // true
+2️⃣ Arrow function to calculate shopping cart total (with shipping):
+
+
+const getCartTotal = (cartAmount, shipping = 50) => cartAmount + shipping;
+console.log(getCartTotal(450)); // 500
+3️⃣ Function expression to calculate delivery ETA based on distance:
+
+
+const estimateDeliveryTime = function(distanceKm) {
+  return distanceKm <= 5 ? "30 mins" : "1 hour";
+};
+
+console.log(estimateDeliveryTime(7)); // 1 hour
+❓ Quick Quiz
+Q1: What will be the output?
+
+
+function sayHi(name = "Guest") {
+  return "Hi " + name;
+}
+console.log(sayHi());
+✅ Answer: Hi Guest
+
+Q2: Which of the following will throw an error?
+
+
+greet(); 
+const greet = () => console.log("Hi");
+✅ Answer: It will throw an error. Arrow function expressions are not hoisted.
+
+Q3: What does this return?
+
+
+const double = x => x + x;
+console.log(double("5"));
+✅ Answer: 55 – because "5" is a string, and string + string = string concatenation.
+
+Q4: Which function type doesn't have its own this?
+✅ Answer: Arrow Function
+
+🧩 Capstone Project Task (Part)
+👨‍💻 You are building a mini shopping site:
+
+🔧 Create a calculateBill() function that takes:
+
+Item price
+
+Quantity
+
+Tax %
+
+Discount %
+
+🔁 Returns final amount to be paid
+
+🔧 Create a greetUser() function that:
+
+Accepts user name
+
+Shows a customized message like:
+📢 "Welcome back, Aman! You have 3 items in your cart."
+
+🔧 Use arrow function to calculate delivery charge based on city:
+
+
+const getDeliveryCharge = city => city === "Delhi" ? 30 : 50;
+🧠 This task applies function declarations, parameters, return values, arrow vs regular functions, and default arguments in a real-world scenario.

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <!-- Include Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .calendar-header {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4A4A4A;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .calendar-day {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #4A90E2; /* Modern Blue */
+            border-radius: 8px;
+            padding: 10px 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-transform: capitalize;
+        }
+
+        .calendar-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+            background-color: #F1F1F1; /* Light Gray */
+            border-radius: 8px;
+            height: 60px;
+            width: 60px;
+            margin: 5px;
+            font-size: 1.25rem;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-date:hover {
+            background-color: #4A90E2; /* Modern Blue */
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container {
+            background: #4A90E2;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .form-select, .form-input, .form-button {
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .form-button {
+            background-color: #2563EB; /* Tailwind Blue-500 */
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .form-button:hover {
+            background-color: #1D4ED8; /* Tailwind Blue-700 */
+        }
+
+        .calendar-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .calendar-week {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto mt-10">
+
+        <!-- Form to select Month and Year -->
+        <div class="form-container mb-6">
+            <div class="mb-4">
+                <label for="month-select" class="form-label">Select Month:</label>
+                <select id="month-select" class="form-select">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="year-input" class="form-label">Enter Year:</label>
+                <input id="year-input" type="number" class="form-input" value="2025" />
+            </div>
+
+            <button id="show-calendar" class="form-button mt-6">Show Calendar</button>
+        </div>
+
+        <!-- Calendar grid container -->
+        <div class="calendar-container p-6">
+            <div class="calendar-header" id="calendar-title">Calendar</div>
+            <div id="calendar-container" class="calendar-grid"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        const monthDays = {
+            "January": 31,
+            "February": 28,  // Leap year calculation is not handled here, but can be added if needed
+            "March": 31,
+            "April": 30,
+            "May": 31,
+            "June": 30,
+            "July": 31,
+            "August": 31,
+            "September": 30,
+            "October": 31,
+            "November": 30,
+            "December": 31
+        };
+
+        let calendarContainer = document.getElementById('calendar-container');
+        let monthSelect = document.getElementById('month-select');
+        let yearInput = document.getElementById('year-input');
+        let showCalendarButton = document.getElementById('show-calendar');
+        
+        // Show the calendar for the selected month and year
+        showCalendarButton.addEventListener('click', function() {
+            let month = monthSelect.value;
+            let year = yearInput.value;
+
+            // Display the calendar header
+            let title = document.getElementById('calendar-title');
+            title.textContent = `Calendar for ${month} ${year}`;
+
+            // Empty the previous calendar
+            calendarContainer.innerHTML = '';
+
+            // Determine the starting day of the month
+            let startDay = getStartDayOfMonth(month, year);
+
+            // Print Weekdays (Header)
+            weekDays.forEach(function(day) {
+                let headerCell = document.createElement('div');
+                headerCell.classList.add('calendar-day');
+                headerCell.textContent = day.slice(0, 3);  // Show short form of day (e.g., Mon, Tue)
+                calendarContainer.appendChild(headerCell);
+            });
+
+            // Fill dates array
+            let daysInMonth = monthDays[month];
+            let dates = [];
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                dates.push(i);
+            }
+
+            // Print the calendar
+            printCalendar(startDay, dates);
+        });
+
+        // Get the start day of the month for a given year and month
+        function getStartDayOfMonth(month, year) {
+            // Date object returns 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+            let firstDay = new Date(`${month} 1, ${year}`).getDay();
+            return weekDays[(firstDay === 0) ? 6 : firstDay - 1];  // Adjusting for Monday start
+        }
+
+        // Print the calendar with dates
+        function printCalendar(startDay, dates) {
+            let counter = 0;
+            let startIndex = weekDays.indexOf(startDay); // Find the starting day index (0-6)
+
+            // Add empty cells before the first date based on the start day
+            for (let i = 0; i < startIndex; i++) {
+                let emptyCell = document.createElement('div');
+                calendarContainer.appendChild(emptyCell); // Empty cell for alignment
+                counter++;
+            }
+
+            // Print Dates
+            dates.forEach(function(date) {
+                let dateCell = document.createElement('div');
+                dateCell.classList.add('calendar-date', 'border', 'border-gray-300', 'p-3', 'text-center', 'bg-white');
+                dateCell.textContent = date;
+                calendarContainer.appendChild(dateCell);
+                counter++;
+            });
+        }
+    </script>
+
+</body>
+</html>

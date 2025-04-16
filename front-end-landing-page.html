@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keshf EdTech | Producing Professionals</title>
+    <link rel="icon" href="./Images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg-light: #f5f7fa;
+      --bg-dark: #121212;
+      --text-light: #333;
+      --text-dark: #f0f0f0;
+      --primary: #1e3c72;
+      --accent: #ffdc60;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, var(--bg-light), #c3cfe2);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 5px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    /* Updated video container styling */
+    .hero .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .hero iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+    }
+
+    .hero a.button {
+      background-color: var(--accent);
+      color: var(--primary);
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero a.button:hover {
+      background-color: #ffd633;
+    }
+
+    /* Featured Section */
+    .featured {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+      background-color: var(--bg-light);
+    }
+
+    .featured .card {
+      background-color: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 10px;
+      max-width: 300px;
+    }
+
+    .featured .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .featured .card h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 1rem;
+    }
+
+    .featured .card p {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin: 1rem 0;
+    }
+
+    .featured .card a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .featured .card a:hover {
+      color: #ffba00;
+    }
+
+    .newsletter {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 500px;
+      margin: 4rem auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .newsletter input {
+      padding: 0.75rem;
+      width: 70%;
+      max-width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 0.5rem;
+    }
+
+    .newsletter button {
+      padding: 0.75rem 1.2rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .newsletter button:hover {
+      background: #2d539e;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column h3 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li a {
+      color: var(--accent);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-column.footer-social {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-column.footer-social a {
+      margin: 0 0.5rem;
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+    }
+
+    body.dark-mode .newsletter,
+    body.dark-mode input {
+      background: #222;
+      color: #eee;
+      border-color: #444;
+    }
+  </style>
+  
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- SEO Open Graph -->
+    <meta property="og:title" content="Keshf EdTech - Producing Professionals" />
+    <meta property="og:description" content="Empowering learners to become professionals with our modern tech programs." />
+    <meta property="og:image" content="/images/cover.jpg" />
+    <meta property="og:url" content="https://keshfedtech.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1e40af',
+              secondary: '#6366f1',
+            },
+          },
+        },
+      };
+    </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="./images/KeshfEdTech Logo.jpg" alt="Keshf EdTech Logo" class="h-16 w-auto" loading="lazy" />
+        <!-- <span class="text-xl font-bold text-primary dark:text-white">Keshf EdTech</span> -->
+      </a>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle-btn" onclick="toggleDarkMode()">🌙</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+      
+      <!-- Text Content (Left Side) -->
+      <div style="flex: 1 1 400px; max-width: 500px; text-align: left;">
+        <h1>Master Front-End Development</h1>
+        <p>Start your journey with HTML, CSS, JavaScript, and more — guided tutorials, real-world projects, and hands-on practice.</p>
+        <a class="button" href="javascript-landing-page.html">Explore JavaScript Course 🚀</a>
+      </div>
+  
+      <!-- Video (Right Side) -->
+      <div style="flex: 1 1 480px; max-width: 600px;">
+        <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+          <iframe src="https://www.youtube.com/embed/qz0aGYrrlhU"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+          </iframe>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+ 
+
+  <!-- Featured Section -->
+  <section class="featured" style="padding: 4rem 2rem; background-color: #fff; text-align: center;">
+    <h2 style="font-size: 2rem; color: var(--primary); margin-bottom: 2rem;">Featured Courses</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1200px; margin: auto;">
+      
+      <!-- Course 1: Introduction to Front-End Development -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/front-end/front-end.jpg" alt="Introduction to Front-End Development" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Introduction to Front-End Development</h3>
+        <p>Learn the basics of front-end development, including HTML, CSS, and the role of front-end developers.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 2: Programming with JavaScript -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/JavaScript.jpg" alt="Programming with JavaScript" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Programming with JavaScript</h3>
+        <p>Dive into JavaScript programming, covering variables, functions, loops, and basic algorithms.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 3: Version Control -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/Git.jpg" alt="Version Control" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Version Control</h3>
+        <p>Understand version control systems, focusing on Git and GitHub for managing code changes and collaboration.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 4: HTML and CSS in Depth -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/HTML 5 AND CSS.jpg" alt="HTML and CSS in Depth" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">HTML and CSS in Depth</h3>
+        <p>Explore advanced HTML and CSS techniques to create responsive and visually appealing web pages.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 5: React Basics -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/React.jpg" alt="React Basics" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">React Basics</h3>
+        <p>Get introduced to React, a popular JavaScript library for building user interfaces, including components and JSX.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 6: Advanced React -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/React.jpg" alt="Advanced React" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Advanced React</h3>
+        <p>Build upon React basics by learning about hooks, state management, and advanced component patterns.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 7: Principles of UX/UI Design -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/UIUXdesignone.jpg" alt="Principles of UX/UI Design" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Principles of UX/UI Design</h3>
+        <p>Study user experience and user interface design principles to create intuitive and user-friendly web applications.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 8: Front-End Developer Capstone -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/Capstone Project.jpg" alt="Front-End Developer Capstone" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Front-End Developer Capstone</h3>
+        <p>Apply your skills in a real-world project, developing a complete front-end application from start to finish.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+      <!-- Course 9: Coding Interview Preparation -->
+      <div class="card" style="background: var(--bg-light); border-radius: 10px; padding: 1.5rem; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="./Images/Coding interview preparation.jpg" style="width: 100%; border-radius: 10px;">
+        <h3 style="margin-top: 1rem;">Coding Interview Preparation</h3>
+        <p>Prepare for technical interviews by practicing coding problems and learning interview strategies.</p>
+        <a href="#" style="color: var(--primary); font-weight: bold; text-decoration: none;">Explore Course</a>
+      </div>
+  
+    </div>
+  </section>
+
+  
+  <!-- Featured Section -->
+<section class="featured" style="padding: 4rem 2rem; background-color: #fff; text-align: center;">
+  <h2 style="font-size: 2rem; color: var(--primary); margin-bottom: 2rem;">Why Learn with CodeCraft Academy?</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 1200px; margin: auto;">
+    
+    <div style="flex: 1 1 250px; background: var(--bg-light); border-radius: 10px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+      <i class="fas fa-code" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+      <h3 style="margin-bottom: 0.5rem;">Project-Based Learning</h3>
+      <p>Build real-world projects while you learn so you’re always industry-ready.</p>
+    </div>
+
+    <div style="flex: 1 1 250px; background: var(--bg-light); border-radius: 10px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+      <i class="fas fa-users" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+      <h3 style="margin-bottom: 0.5rem;">Community Support</h3>
+      <p>Join a growing community of learners, mentors, and developers to grow together.</p>
+    </div>
+
+    <div style="flex: 1 1 250px; background: var(--bg-light); border-radius: 10px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+      <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+      <h3 style="margin-bottom: 0.5rem;">Structured Curriculum</h3>
+      <p>Step-by-step lessons and roadmaps to take you from beginner to pro.</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <section class="newsletter">
+    <h2>Subscribe to our Newsletter</h2>
+    <p>Get course updates, tips, and resources in your inbox!</p>
+    <form onsubmit="event.preventDefault(); alert('Subscribed! 🎉');">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+   <!-- Contact -->
+ <section id="contact" class="py-16 bg-white dark:bg-gray-900">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-8">Get in Touch</h2>
+    <form class="space-y-4">
+      <input type="text" placeholder="Your Name" class="w-full p-3 rounded border dark:bg-gray-800" required />
+      <input type="email" placeholder="Email" class="w-full p-3 rounded border dark:bg-gray-800" required />
+      <textarea placeholder="Message" class="w-full p-3 rounded border h-32 dark:bg-gray-800" required></textarea>
+      <button type="submit" class="bg-primary text-white px-6 py-3 rounded hover:bg-blue-700">Send Message</button>
+    </form>
+  </div>
+</section>
+
+  <footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>About Keshf Ed Tech</h3>
+      <p><em>Producing professionals.</em></p>
+      <p>Keshf Ed Tech is your go-to platform for learning web development with hands-on projects and structured roadmaps.</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">Introduction to Front-End Development</a></li>
+        <li><a href="#">Programming with JavaScript</a></li>
+        <li><a href="#">Version Control</a></li>
+        <li><a href="#">HTML and CSS in Depth</a></li>
+        <li><a href="#">React Basics</a></li>
+        <li><a href="#">Advanced React</a></li>
+        <li><a href="#">Principles of UX/UI Design</a></li>
+        <li><a href="#">Front-End Developer Capstone</a></li>
+        <li><a href="#">Coding Interview Preparation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column footer-social">
+      <h3>Follow Us</h3>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Keshf Ed Tech. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+  
+
+  <div id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

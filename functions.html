@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Functions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Functions</h1>
+  <p><strong>(Foundation for modular, reusable code – har developer ko yeh concept solid aana chahiye!)</strong></p>
+
+  <h2>🧠 Hinglish Explanation (Detailed)</h2>
+  <p>JavaScript mein function ek reusable block of code hota hai jo specific task perform karta hai. Aap function ko baar-baar use kar sakte ho without rewriting the same code. Yeh web development mein bahut important hota hai — chaahe aap button click pe alert show karo, ya form ka data validate karo — sab mein function ka use hota hai.</p>
+
+  <h3>🔹 Why use Functions?</h3>
+  <ul>
+    <li>✅ Code reusability</li>
+    <li>✅ Logic separation</li>
+    <li>✅ Better readability & maintenance</li>
+    <li>✅ Avoid repetition (DRY Principle – Don’t Repeat Yourself)</li>
+  </ul>
+
+  <h3>🔹 Function Declaration</h3>
+  <p><strong>Definition:</strong> Function declaration ya "named function" ek traditional tareeka hai function banane ka. Yeh hoisted hota hai — iska matlab aap isse define karne se pehle bhi call kar sakte ho.</p>
+  <pre><code>function showWelcomeBanner() {
+  console.log("👋 Welcome to ShopSmart! Enjoy your shopping.");
+}</code></pre>
+
+  <h3>🔹 Call / Invoke Function</h3>
+  <p><strong>Definition:</strong> Function ko use karne ke liye usse "call" ya "invoke" karna padta hai.</p>
+  <pre><code>showWelcomeBanner(); // Output: 👋 Welcome to ShopSmart! Enjoy your shopping.</code></pre>
+
+  <h3>🔹 Function with Parameters</h3>
+  <p><strong>Definition:</strong> Parameters wo values hoti hain jo function ke andar input ke roop mein bheji jaati hain.</p>
+  <pre><code>function greetUser(name) {
+  console.log("Hello, " + name + "! We're glad you're back.");
+}
+
+greetUser("Aman"); // Output: Hello, Aman! We're glad you're back.</code></pre>
+
+  <h3>🔹 Function with Return</h3>
+  <p><strong>Definition:</strong> <code>return</code> keyword function ka output dene ke liye hota hai.</p>
+  <pre><code>function calculateTotal(price, taxRate) {
+  return price + (price * taxRate);
+}
+
+let total = calculateTotal(1000, 0.18);
+console.log(total); // Output: 1180</code></pre>
+
+  <h3>🔹 Default Parameters</h3>
+  <p><strong>Definition:</strong> Agar function call karte waqt koi parameter nahi diya gaya, to default value use ki jaati hai.</p>
+  <pre><code>function greet(name = "Guest") {
+  console.log("Hello " + name + ", proceed to checkout.");
+}
+
+greet(); // Hello Guest, proceed to checkout.</code></pre>
+
+  <h3>🔹 Function Expression</h3>
+  <p><strong>Definition:</strong> Function expression mein function ko ek variable mein store kiya jaata hai.</p>
+  <pre><code>const getDiscountedPrice = function (originalPrice, discount) {
+  return originalPrice - (originalPrice * discount);
+};
+
+console.log(getDiscountedPrice(500, 0.2)); // 400</code></pre>
+
+  <h3>🔹 Arrow Function (ES6+)</h3>
+  <p><strong>Definition:</strong> Arrow function modern syntax hai. Yeh concise hoti hai, aur <code>this</code> parent context se inherit karta hai.</p>
+  <pre><code>const calculateDelivery = (distanceKm) => {
+  return distanceKm * 5; // ₹5 per km
+};
+
+console.log(calculateDelivery(10)); // 50
+
+// Shorter version
+const square = x => x * x;
+console.log(square(5)); // 25</code></pre>
+
+  <h2>📝 Interview Notes</h2>
+  <ul>
+    <li>Function Declaration hoisting hota hai – define karne se pehle bhi call kar sakte ho.</li>
+    <li>Function Expression / Arrow Function hoist nahi hoti.</li>
+    <li>Arrow Function <code>this</code> ka apna context nahi leti — they inherit from parent scope.</li>
+  </ul>
+
+  <h2>✅ Interview Questions</h2>
+  <h4>Q1: function aur arrow function mein kya farq hai?</h4>
+  <p><strong>Answer:</strong></p>
+  <ul>
+    <li>Function ka apna <code>this</code> hota hai.</li>
+    <li>Arrow function parent ka <code>this</code> use karta hai.</li>
+    <li>Function hoist hota hai, arrow function nahi.</li>
+  </ul>
+
+  <h4>Q2: Function ko bina return keyword ke kaise result milta hai?</h4>
+  <p><strong>Answer:</strong> Agar return nahi likhoge, function default <code>undefined</code> return karega.</p>
+
+  <h4>Q3: Function declaration vs expression mein difference?</h4>
+  <table border="1" cellpadding="8">
+    <tr><th>Feature</th><th>Declaration</th><th>Expression</th></tr>
+    <tr><td>Hoisted</td><td>✅ Yes</td><td>❌ No</td></tr>
+    <tr><td>Named Function</td><td>✅ Always</td><td>Optional (anonymous)</td></tr>
+    <tr><td>Syntax</td><td><code>function fn()</code></td><td><code>const fn = function()</code></td></tr>
+  </table>
+
+  <h2>🧪 Exercises</h2>
+  <ol>
+    <li>Write a function to validate if an email contains @ symbol:
+      <pre><code>function isValidEmail(email) {
+  return email.includes("@");
+}
+console.log(isValidEmail("hello@example.com")); // true</code></pre>
+    </li>
+    <li>Arrow function to calculate shopping cart total (with shipping):
+      <pre><code>const getCartTotal = (cartAmount, shipping = 50) => cartAmount + shipping;
+console.log(getCartTotal(450)); // 500</code></pre>
+    </li>
+    <li>Function expression to calculate delivery ETA based on distance:
+      <pre><code>const estimateDeliveryTime = function(distanceKm) {
+  return distanceKm <= 5 ? "30 mins" : "1 hour";
+};
+
+console.log(estimateDeliveryTime(7)); // 1 hour</code></pre>
+    </li>
+  </ol>
+
+  <h2>❓ Quick Quiz</h2>
+  <ul>
+    <li>Q1: What will be the output?
+      <pre><code>function sayHi(name = "Guest") {
+  return "Hi " + name;
+}
+console.log(sayHi());</code></pre>
+      ✅ Answer: Hi Guest
+    </li>
+    <li>Q2: Which of the following will throw an error?
+      <pre><code>greet(); 
+const greet = () => console.log("Hi");</code></pre>
+      ✅ Answer: It will throw an error. Arrow function expressions are not hoisted.
+    </li>
+    <li>Q3: What does this return?
+      <pre><code>const double = x => x + x;
+console.log(double("5"));</code></pre>
+      ✅ Answer: 55 – because "5" is a string, and string + string = string concatenation.
+    </li>
+    <li>Q4: Which function type doesn't have its own this?
+      ✅ Answer: Arrow Function
+    </li>
+  </ul>
+
+  <h2>🧩 Capstone Project Task (Part)</h2>
+  <p><strong>👨‍💻 You are building a mini shopping site:</strong></p>
+  <ul>
+    <li><strong>🔧 Create a calculateBill() function that takes:</strong>
+      <ul>
+        <li>Item price</li>
+        <li>Quantity</li>
+        <li>Tax %</li>
+        <li>Discount %</li>
+      </ul>
+      🔁 Returns final amount to be paid
+    </li>
+    <li><strong>🔧 Create a greetUser() function that:</strong>
+      <ul>
+        <li>Accepts user name</li>
+        <li>Shows a customized message like:<br>
+          📢 "Welcome back, Aman! You have 3 items in your cart."
+        </li>
+      </ul>
+    </li>
+    <li><strong>🔧 Use arrow function to calculate delivery charge based on city:</strong>
+      <pre><code>const getDeliveryCharge = city => city === "Delhi" ? 30 : 50;</code></pre>
+    </li>
+  </ul>
+  <p>🧠 This task applies function declarations, parameters, return values, arrow vs regular functions, and default arguments in a real-world scenario.</p>
+
+</body>
+</html>
